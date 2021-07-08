@@ -1,0 +1,864 @@
+<?xml version='1.0'?>
+<JobDefinition>
+  <Comment />
+  <Description>Forecast scheduled jobs</Description>
+  <Name>Forecast_Scheduled_Jobs</Name>
+  <Partition type="Partition" path="REDWOOD" />
+  <ParentApplication type="Application" path="REDWOOD.Webinars.REDWOOD.Reports.$2" />
+  <EquivalentObject>false</EquivalentObject>
+  <CriticalProcess>false</CriticalProcess>
+  <KeepForce>false</KeepForce>
+  <KeepAmount>13</KeepAmount>
+  <KeepUnits>Jobs</KeepUnits>
+  <KeepType>System</KeepType>
+  <KeepJobsInStatus />
+  <KeepInStatusAmount />
+  <KeepInStatusUnit />
+  <MinimumOpenDurationExpression />
+  <Overdue>false</Overdue>
+  <OverdueStatus />
+  <OverviewFormat />
+  <Priority />
+  <MaxPriority>100</MaxPriority>
+  <RestartCount />
+  <ReturncodeMapToCompleted />
+  <HoldOnSubmit>false</HoldOnSubmit>
+  <TopLevel>true</TopLevel>
+  <Template>false</Template>
+  <Maintenance>false</Maintenance>
+  <ReactionJobType />
+  <EvaluationOwnerType>SystemDefault</EvaluationOwnerType>
+  <CompletionStrategy>Default</CompletionStrategy>
+  <OverdueEventDefinition />
+  <DefaultOutputFormat type="Format" path="GLOBAL.CSV" />
+  <JobDefinitionType type="JobDefinitionType" path="GLOBAL.RedwoodScript" />
+  <DefaultLogFormat />
+  <DefaultQueue type="Queue" path="GLOBAL.System" />
+  <Resource />
+  <TimeWindow />
+  <TimeWindowTimeZone />
+  <JobTimeZone />
+  <RELRelatedLibrary />
+  <ActionSubject />
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>From Date</Description>
+    <Name>fromDate</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>DateTimeZone</DataType>
+    <DefaultExpression><![CDATA[=Time.expression(Time.now(),'truncate day')]]></DefaultExpression>
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>None</SimpleConstraintType>
+    <SimpleConstraintData />
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>0</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>false</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>To Date</Description>
+    <Name>toDate</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>DateTimeZone</DataType>
+    <DefaultExpression><![CDATA[=Time.expression(Time.now(),'truncate day add 1 day')]]></DefaultExpression>
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>None</SimpleConstraintType>
+    <SimpleConstraintData />
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>1</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>false</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Filter Partition</Description>
+    <Name>filterPartition</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression />
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>QueryFilter</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[QueryFilter:User.Redwood System.Partition.Partition%2e;all]]></SimpleConstraintData>
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>2</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>true</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Filter Application</Description>
+    <Name>filterApplication</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression />
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>QueryFilter</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[QueryFilter:User.Redwood System.Application.Application%2e;alltop]]></SimpleConstraintData>
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>3</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>true</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Filter Submit Frame</Description>
+    <Name>filterSubmitFrame</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression />
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>QueryFilter</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[QueryFilter:User.Redwood System.SubmitFrame.SubmitFrame%2e;all]]></SimpleConstraintData>
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>4</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>true</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Filter Time Window</Description>
+    <Name>filterTimeWindow</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression />
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>QueryFilter</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[QueryFilter:User.Redwood System.TimeWindow.TimeWindow%2e;all]]></SimpleConstraintData>
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>5</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>true</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Optional Event Definition</Description>
+    <Name>Parm_EventDefinition</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression />
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>QueryFilter</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[QueryFilter:User.Redwood System.EventDefinition.EventDefinition%2e;all]]></SimpleConstraintData>
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>6</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>true</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Filter on Definition Name</Description>
+    <Name>filterDefinition</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression />
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>None</SimpleConstraintType>
+    <SimpleConstraintData />
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>7</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>true</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Type of Definition Match Filter</Description>
+    <Name>filterDefinitionType</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression />
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>List</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[StartsWith,Contains,EndsWith]]></SimpleConstraintData>
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>8</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>true</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Max # For Each Job, 0 = All</Description>
+    <Name>maxIterations</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>Number</DataType>
+    <DefaultExpression><![CDATA[0]]></DefaultExpression>
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>Expression</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[=value >= 0]]></SimpleConstraintData>
+    <SimpleConstraintMessage>Please put in a positive number</SimpleConstraintMessage>
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>9</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>false</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <JobDefinitionParameter>
+    <Comment />
+    <Description>Include Chain Steps</Description>
+    <Name>printFullChain</Name>
+    <DataLength />
+    <DataPrecision />
+    <DataScale />
+    <DataType>String</DataType>
+    <DefaultExpression><![CDATA[Yes]]></DefaultExpression>
+    <DefaultValueEditable />
+    <Direction>In</Direction>
+    <SimpleConstraintType>List</SimpleConstraintType>
+    <SimpleConstraintData><![CDATA[Yes,No]]></SimpleConstraintData>
+    <SimpleConstraintMessage />
+    <SimpleConstraintOptional>false</SimpleConstraintOptional>
+    <SimpleConstraintSort>Ascending</SimpleConstraintSort>
+    <Display>true</Display>
+    <Password>false</Password>
+    <DisplayOrder>10</DisplayOrder>
+    <Editable>Always</Editable>
+    <GroupName />
+    <PartOfKey>false</PartOfKey>
+    <Nullable>false</Nullable>
+    <Runtime>false</Runtime>
+    <JobFormat />
+    <Array>false</Array>
+    <ArrayMinLength>0</ArrayMinLength>
+    <ArrayMaxLength />
+    <ArrayDuplicateValuesAllowed>false</ArrayDuplicateValuesAllowed>
+    <ArraySorted>false</ArraySorted>
+    <ParameterMappingType>Normal</ParameterMappingType>
+    <JobDefinitionParameterSubType />
+  </JobDefinitionParameter>
+  <Script>
+    <Source><![CDATA[import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.redwood.scheduler.api.date.DateTimeZone;
+import com.redwood.scheduler.api.model.Application;
+import com.redwood.scheduler.api.model.BusinessKeyLookup;
+import com.redwood.scheduler.api.model.Job;
+import com.redwood.scheduler.api.model.JobDefinition;
+import com.redwood.scheduler.api.model.JobDefinitionParameter;
+import com.redwood.scheduler.api.model.JobParameter;
+import com.redwood.scheduler.api.model.Partition;
+import com.redwood.scheduler.api.model.SubmitFrame;
+import com.redwood.scheduler.api.model.TimeWindow;
+import com.redwood.scheduler.api.model.TimeZone;
+import com.redwood.scheduler.api.model.enumeration.ParameterType;
+import com.redwood.scheduler.api.model.enumeration.TimeUnit;
+{
+  int intLoop = 1;
+  int intDecrement = 1;
+  List<String> arrayList = new ArrayList<>();
+  List<String[]> arrayJob  = new LinkedList<>();
+  String strSeparator = ",";
+  Long prevJid = Long.valueOf(0);
+  Long estJid  = Long.valueOf(0);
+  String lastSF_System = "";
+  String currSF_System = "";
+
+  //This table gets the last column updated as it goes, this is for sorting
+  String[][] strParmValues =
+  {
+      {"SAP_SYSTEMS",       "SAP System",     ""},
+      {"CLIENT",            "Client",         ""},
+      {"ABAP_PROGRAM_NAME", "ABAP",           ""},
+      {"ABAP_VARIANT_NAME", "Variant",        ""},
+      {"JOBNAME",           "Job Name",       ""},
+      {"NAME",              "Technical Name", ""}
+  };
+
+  //initalize est run start array, milliseconds are longs
+  // 0 - Chain(0), Step(1), and Call(2) codes
+  // 1 - level from chain step and call array
+  // 2 - estimate from job
+  // 3 - estimate adjust in milliseconds (add to start time amount)
+  long[][] longAr = new long[1000][4];
+
+  String sql = "select j.* from Job j where j.Status in ('S','N','R','W','I') and j.SubmitFrame is not null and j.Behavior in (0, 1)";
+  List<Object> binds = new LinkedList<>();
+  if (filterPartition != null)
+  {
+    Partition partition = BusinessKeyLookup.getPartitionByBusinessKey(jcsSession, filterPartition);
+    if (partition != null)
+    {
+      sql += " and exists (select 1 from JobDefinition jd where jd.UniqueId = j.JobDefinition and jd.Partition = ?)";
+      binds.add(partition.getUniqueId());
+    }
+  }
+  if (filterApplication != null)
+  {
+    Application application = BusinessKeyLookup.getApplicationByBusinessKey(jcsSession, filterApplication);
+    if (application != null)
+    {
+      sql += " and exists (select 1 from JobDefinition jd where jd.UniqueId = j.JobDefinition and jd.Application = ?)";
+      binds.add(application.getUniqueId());
+    }
+  }
+  if (filterSubmitFrame != null)
+  {
+    SubmitFrame sf = BusinessKeyLookup.getSubmitFrameByBusinessKey(jcsSession, filterSubmitFrame);
+    if (sf != null)
+    {
+      sql += " and j.SubmitFrame = ?";
+      binds.add(sf.getUniqueId());
+    }
+  }
+  if (filterTimeWindow != null)
+  {
+    TimeWindow tw = BusinessKeyLookup.getTimeWindowByBusinessKey(jcsSession, filterTimeWindow);
+    if (tw != null)
+    {
+      sql += " and j.TimeWindow = ?";
+      binds.add(tw.getUniqueId());
+    }
+  }
+  if (filterDefinition != null)
+  {
+    String filter = "%" + filterDefinition + "%";
+    if ("EndsWith".equals(filterDefinitionType))
+    {
+      filter = "%" + filterDefinition;
+    }
+    else if ("StartsWith".equals(filterDefinitionType))
+    {
+      filter = filterDefinition + "%";
+    }
+    sql += " and exists (select 1 from JobDefinition jd where jd.UniqueId = j.JobDefinition and jd.SearchName like ?)";
+    binds.add(filter);
+  }
+
+  sql  +=  " order by j.SubmitFrame asc, j.ScheduledStartTime asc";
+
+  for (Iterator it = jcsSession.executeObjectQuery(sql, binds.toArray()); it.hasNext(); )
+  {
+    Job job = (Job) it.next();
+    Long jid = job.getJobId();
+    SubmitFrame submitFrame = job.getSubmitFrame();
+    TimeWindow intersect = job.getTimeWindow();
+    JobDefinition jd = job.getJobDefinition();
+    Partition part = jd.getPartition();
+    DateTimeZone baseTime = job.getNextSubmitBaseTime();
+
+    if (submitFrame.getName().startsWith("SF_System"))
+    {
+      currSF_System = submitFrame.getBusinessKey().getPath().toString();
+      if (currSF_System.equals(lastSF_System))
+      {
+        continue;
+      }
+      else
+      {
+        lastSF_System = currSF_System;
+      }
+    }
+
+    if (baseTime == null)
+    {
+      jcsErr.println("Job " + jid + " has no base submit time");
+      continue;
+    }
+    if (toDate.before(baseTime))
+    {
+      jcsErr.println("End time (" + toDate + ") before base submit time (" + baseTime + ")");
+    }
+    else
+    {
+      TimeZone defaultTimeZone = jcsSession.getTimeZoneByOlsonName(baseTime.getTimeZone().getID());
+      DateTimeZone currentTime = new DateTimeZone(fromDate);
+      currentTime.setTimeZone(baseTime.getTimeZone());
+      currentTime = submitFrame.calculateNext(job.getRequestedStartTime(), currentTime, intersect, defaultTimeZone);
+      if (currentTime == null)
+      {
+        jcsErr.println("Could not find first submit time for job " + jid);
+        jcsErr.println("baseDate    - " + baseTime);
+        jcsErr.println("intesect    - " + intersect.getName());
+        jcsErr.println("baseDate    - " + defaultTimeZone.getName());
+        jcsErr.println("currentTime - " + currentTime);
+      }
+      else if (!currentTime.before(toDate))
+      {
+        jcsErr.println("First submit time (" + currentTime + ") is after end time (" + toDate + ") for job " + jid);
+      }
+      else
+      {
+        if (maxIterations.intValue() > 0)
+        {
+          intLoop = maxIterations.intValue();
+        }
+        else
+        {
+          intDecrement = 0;
+        }
+
+        while (currentTime != null && currentTime.before(toDate) && intLoop > 0)
+        {
+          String stringTime = DateTimeZone.formatDuration(job.getEstimates().getEstimatedRunTime().getTimeMillis(), "|||||#|:#|:#||");
+          String stringTWName = job.getTimeWindow() == null ? "" : job.getTimeWindow().getName();
+          String stringSFName = job.getSubmitFrame() == null ? "" : job.getSubmitFrame().getName();
+          String stringAppName = jd.getParentApplication() == null ? "" : jd.getParentApplication().getName();
+          String stringComment = jd.getComment() == null ? "" : jd.getComment();
+          String strPriority = jd.getPriority() == null ? "50" : jd.getPriority().toString();
+          String strWaitEvent = String.join(";", jd.getJobDefinitionWaitEvents().stream().map(jwe -> jwe.getEventDefinition().getName()).collect(Collectors.toList()));
+          String strRaiseEvent = String.join(";", jd.getJobDefinitionRaiseEvents().stream().map(jre -> jre.getEventDefinition().getName()).collect(Collectors.toList()));
+          String strLock = String.join(";", jd.getJobDefinitionJobLocks().stream().map(jdl -> jdl.getJobLock().getName()).collect(Collectors.toList()));
+          String strQueue = job.getQueue() == null ? "" : job.getQueue().getName();
+          int seqBuilt = 0;
+          String strSeq = "000";
+          String stringDate = currentTime.toFormattedString("yyyy/MM/dd,HH:mm:ss,i");
+          String sortKeyPart = currentTime.toFormattedString("yyyyMMddHHmmssi") + job.getJobDefinition().getName() + String.valueOf(jid);
+          String stringType = jd.getJobDefinitionType().getName();
+
+          if ("JobChain".equals(stringType))
+          {
+            //different job id, rebuilt table
+            if (!prevJid.equals(jid))
+            {
+              arrayJob = getAllJobStepsCalls(job);
+            }
+
+            for (String [] strList: arrayJob)
+            {
+              if ("NO".equalsIgnoreCase(printFullChain) && seqBuilt > 0)
+              {
+                continue;
+              }
+
+              JobDefinition jobdef = (JobDefinition) jcsSession.getJobDefinitionByName(jcsSession.getPartitionByName(strList[6]),strList[2]);
+              Long subJobId = new Long(Long.parseLong(strList[4]));
+              Job subJob = jcsSession.getJobByJobId(subJobId);
+              String strParms = parmStringValues(subJob, strParmValues, strSeparator);
+              stringTime = DateTimeZone.formatDuration(subJob.getEstimates().getEstimatedRunTime().getTimeMillis(), "|||||#|:#|:#||");
+
+              if (estJid != jid)
+              {
+                //Figure out the millisecond increase value per level to be added to the start time
+                //update the estimate array, 1st set type
+
+                if (strList[0].equals("JobChain"))
+                {
+                  longAr [seqBuilt][0] = 0;
+                }
+                else if (strList[0].equals("Step"))
+                {
+                  longAr [seqBuilt][0] = 1;
+                }
+                else if (strList[0].equals("Call"))
+                {
+                  longAr [seqBuilt][0] = 2;
+                }
+                else
+                {
+                  longAr [seqBuilt][0] = 9;
+                }
+
+                //set the level from the job chain step call routine
+                longAr [seqBuilt][1] = Long.valueOf(strList[1]).longValue();
+
+                //get the estimate that incompasses this level and the child processes
+                longAr [seqBuilt][2] = subJob.getEstimates().getEstimatedRunTime().getTimeMillis();
+
+                //0 level is a job chain
+                if (longAr [seqBuilt][1] == 0)
+                {
+                  longAr [seqBuilt][3] = 0;
+                } //if the level stays the same or gets deeper, use the previous millisecond increase value
+                else if (longAr [seqBuilt][1] >= longAr [seqBuilt - 1][1])
+                {
+                  longAr [seqBuilt][3] = longAr [seqBuilt - 1][3];
+                } //if the level is going back down, update the millisecond increase value
+                else if (longAr [seqBuilt][1] < longAr [seqBuilt - 1][1])
+                {
+                  //find the revious at the same level
+                  for ( int i=seqBuilt - 1; i > 0; i--)
+                  {
+                    //levels are the same
+                    if (longAr[i][1] == longAr[seqBuilt][1])
+                    {
+                      //current entry is a step, add est
+                      if (longAr[seqBuilt][0] == 1)
+                      {
+                        longAr [seqBuilt][3] = longAr [i][3] + longAr [i][2];
+                      } //current entry is a call, use old
+                      else if (longAr[seqBuilt][0] == 2)
+                      {
+                        longAr [seqBuilt][3] = longAr [i][3];
+                      }
+                      break;
+                    }
+                  }
+                }
+              }
+
+              if ( !strList[0].equals("JobChain"))
+              {
+                stringTWName = jobdef.getTimeWindow() == null ? "" : jobdef.getTimeWindow().getName();
+                stringSFName = "";
+              }
+              stringAppName = jobdef.getParentApplication() == null ? "" : jobdef.getParentApplication().getName();
+              stringComment = jobdef.getComment() == null ? "" : jobdef.getComment();
+              strPriority = jobdef.getPriority() == null ? "50" : jobdef.getPriority().toString();
+              strWaitEvent = String.join(";", jobdef.getJobDefinitionWaitEvents().stream().map(jwe -> jwe.getEventDefinition().getName()).collect(Collectors.toList()));
+              strRaiseEvent = String.join(";", jobdef.getJobDefinitionRaiseEvents().stream().map(jre -> jre.getEventDefinition().getName()).collect(Collectors.toList()));
+              strLock = String.join(";", jobdef.getJobDefinitionJobLocks().stream().map(jdl -> jdl.getJobLock().getName()).collect(Collectors.toList()));
+              if (strQueue.length() == 0 && jobdef.getDefaultQueue() != null)
+              {
+                strQueue = jobdef.getDefaultQueue().getName();
+              }
+              strSeq = "00" + String.valueOf(seqBuilt);
+              strSeq = strSeq.substring(strSeq.length()-3);
+              DateTimeZone dtzDisplay = new DateTimeZone(currentTime.getTimeZone(), currentTime.getUTCMilliSecs() + longAr [seqBuilt][3]);
+              stringDate = dtzDisplay.toFormattedString("yyyy/MM/dd,HH:mm:ss,i");
+              sortKeyPart = dtzDisplay.toFormattedString("yyyyMMddHHmmssi") + job.getJobDefinition().getName() + String.valueOf(jid);
+
+              arrayList.add(sortKeyPart + strSeq + strSeparator +
+                  stringDate                     + strSeparator +
+                  strList[0]                     + strSeparator +
+                  strList[1]                     + strSeparator +
+                  strList[2]                     + strSeparator +
+                  strList[3].replaceAll(",",";") + strSeparator +
+                  stringAppName                  + strSeparator +
+                  strLock                        + strSeparator +
+                  strWaitEvent                   + strSeparator +
+                  strRaiseEvent                  + strSeparator +
+                  strPriority                    + strSeparator +
+                  strQueue                       + strSeparator +
+                  stringTime                     + strSeparator +
+                  stringTWName                   + strSeparator +
+                  stringSFName                   + strSeparator +
+                  strParms);
+              seqBuilt++;
+              prevJid = jid;
+            }
+            estJid = jid;
+          }
+          else
+          {
+            arrayList.add(sortKeyPart + strSeq           + strSeparator +
+                stringDate                               + strSeparator +
+                stringType                               + strSeparator +
+                "0"                                      + strSeparator +
+                job.getJobDefinition().getName()         + strSeparator +
+                job.getDescription().replaceAll(",",";") + strSeparator +
+                stringAppName                            + strSeparator +
+                strLock                                  + strSeparator +
+                strWaitEvent                             + strSeparator +
+                strRaiseEvent                            + strSeparator +
+                strPriority                              + strSeparator +
+                strQueue                                 + strSeparator +
+                stringTime                               + strSeparator +
+                stringTWName                             + strSeparator +
+                stringSFName                             + strSeparator +
+                parmStringValues(job, strParmValues, strSeparator));
+          }
+          currentTime.add(1, TimeUnit.Seconds);
+          currentTime = submitFrame.calculateNext(job.getRequestedStartTime(), currentTime, intersect, defaultTimeZone);
+          intLoop = intLoop - intDecrement;
+        }
+      }
+    }
+  }
+
+  java.util.Collections.sort(arrayList);
+
+  //Print Header
+  jcsOut.println("Date"  + strSeparator +
+      "Time"         + strSeparator +
+      "Time Zone"    + strSeparator +
+      "Type"         + strSeparator +
+      "Level"        + strSeparator +
+      "Job Name"     + strSeparator +
+      "Description"  + strSeparator +
+      "Application"  + strSeparator +
+      "Lock"         + strSeparator +
+      "Wait Event"   + strSeparator +
+      "Raise Event"  + strSeparator +
+      "Priority"     + strSeparator +
+      "Queue"        + strSeparator +
+      "Duration"     + strSeparator +
+      "Time Window"  + strSeparator +
+      "Submit Frame" + strSeparator +
+      String.join(strSeparator, Arrays.stream(strParmValues).map(e -> e[1]).collect(Collectors.toList())));
+  for (String strOut: arrayList)
+  {
+    jcsOut.println(strOut.substring(strOut.indexOf(strSeparator)+1));
+  }
+}
+
+private List<String []> getAllJobStepsCalls(Job jobIn)
+{
+  List<String []> arrayList = new LinkedList<>();
+  JobDefinition jd = jobIn.getJobDefinition().getMasterJobDefinition();
+  arrayList.add(new String [] {jd.getJobDefinitionType().getName(), "0", jobIn.getJobDefinition().getName(), jobIn.getDescription(), jobIn.getJobId().toString(), "0", jobIn.getJobDefinition().getPartition().getName()});
+
+  if (jd.getJobDefinitionType().getName().equals("JobChain"))
+  {
+    getAllJobChainStepsCalls(arrayList, jobIn, 0, 0);
+  }
+  return arrayList;
+}
+
+private void getAllJobChainStepsCalls(List<String []> arrayListR, Job jobInR, int intSeqR, int intLevelR)
+{
+  JobDefinition jd = jobInR.getJobDefinition().getMasterJobDefinition();
+
+  int intLevelS = intLevelR + 1;
+  int intSeqS   = intSeqR   + 1;
+
+  //Chain Steps
+  for (Job jobLevel: jobInR.getChildJobs())
+  {
+    String stringType = jobLevel.isActualJobChainCall() ? "Call" : "Step";
+
+    arrayListR.add(new String [] {stringType, String.valueOf(intLevelS), jobLevel.getJobDefinition().getName(), jobLevel.getDescription(), jobLevel.getJobId().toString(), String.valueOf(intSeqS++), jobLevel.getJobDefinition().getPartition().getName()});
+    if (jobLevel.getChildJobs() != null)
+    {
+      getAllJobChainStepsCalls(arrayListR, jobLevel, intSeqS, intLevelS);
+    }
+  }
+}
+
+private String parmStringValues(Job job, String[][] strParmsLookup, String strSepOut) throws Exception
+{
+  Map<String, Integer> parameterMap = new HashMap<>();
+
+  //reset the parameter array values
+  for (String [] entry: strParmsLookup)
+  {
+    entry[2] = "";
+  }
+
+  //Build the list of Parameters from Lookup, this is for Case mismatches
+  for (JobParameter jpt : job.getJobParameters())
+  {
+    for (int k = 0; k < strParmsLookup.length; k++)
+    {
+      String strPrmName = jpt.getJobDefinitionParameter().getName();
+      if (strPrmName.equalsIgnoreCase(strParmsLookup[k][0]))
+      {
+        parameterMap.put(strPrmName, Integer.valueOf(k));
+        break;
+      }
+    }
+  }
+
+  for (Map.Entry<String, Integer> e : parameterMap.entrySet())
+  {
+    String strNext = e.getKey();
+    int k = e.getValue().intValue();
+    String strTempValue = "";
+    if (job.getJobParameterByName(strNext) != null)
+    {
+      //Single Job Definition, may not use for a chain though
+      JobParameter jp = job.getJobParameterByName(strNext);
+      JobDefinitionParameter jdp = jp.getJobDefinitionParameter();
+
+      ParameterType strParmType = jdp.getDataType();
+      if (strParmType == ParameterType.String)
+      {
+        if (jp.getInValueString() != null)
+        {
+          strTempValue = jp.getInValueString();
+        }
+      }
+      else
+      {
+        if (jp.getInValue() != null)
+        {
+          strTempValue = jp.getInValue().toString();
+        }
+      }
+    }
+    if (strParmsLookup[k][2].length() == 0)
+    {
+      strParmsLookup[k][2] = strTempValue;
+    }
+  }
+
+  return String.join(strSepOut, Arrays.stream(strParmsLookup).map(e -> e[2]).collect(Collectors.toList()));
+}]]></Source>
+    <RunAsUser />
+    <RemoteRunAsUser />
+    <Library type="Library" path="GLOBAL.None" />
+  </Script>
+</JobDefinition>
