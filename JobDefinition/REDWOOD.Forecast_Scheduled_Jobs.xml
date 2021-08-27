@@ -547,13 +547,13 @@ import com.redwood.scheduler.api.model.enumeration.TimeUnit;
       TimeZone defaultTimeZone = jcsSession.getTimeZoneByOlsonName(baseTime.getTimeZone().getID());
       DateTimeZone currentTime = new DateTimeZone(fromDate);
       currentTime.setTimeZone(baseTime.getTimeZone());
-      currentTime = submitFrame.calculateNext(job.getRequestedStartTime(), currentTime, intersect, defaultTimeZone);
+      currentTime = submitFrame.calculateNext(currentTime, job.getRequestedStartTime(), intersect, defaultTimeZone);
       if (currentTime == null)
       {
         jcsErr.println("Could not find first submit time for job " + jid);
-        jcsErr.println("baseDate    - " + baseTime);
+        jcsErr.println("baseDate    - " + job.getRequestedStartTime());
         jcsErr.println("intesect    - " + intersect.getName());
-        jcsErr.println("baseDate    - " + defaultTimeZone.getName());
+        jcsErr.println("timeZone    - " + defaultTimeZone.getName());
         jcsErr.println("currentTime - " + currentTime);
       }
       else if (!currentTime.before(toDate))
@@ -732,7 +732,7 @@ import com.redwood.scheduler.api.model.enumeration.TimeUnit;
                 parmStringValues(job, strParmValues, strSeparator));
           }
           currentTime.add(1, TimeUnit.Seconds);
-          currentTime = submitFrame.calculateNext(job.getRequestedStartTime(), currentTime, intersect, defaultTimeZone);
+          currentTime = submitFrame.calculateNext(currentTime, job.getRequestedStartTime(), intersect, defaultTimeZone);
           intLoop = intLoop - intDecrement;
         }
       }
